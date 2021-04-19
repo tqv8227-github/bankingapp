@@ -33,17 +33,4 @@
 		</tfoot>
 	</table>
 	</div>
-	<script type="text/javascript">
-	$(function(){
-		$('#nav a').click(function(e) { 
-			alert("onclick");
-			
-			  $('#main-div').clear().hide().load( $(this).attr('href') , function(){
-					 $('#main-div').show();
-			  });
-			  
-			  //return false;
-		})
-	})
-</script>
 <%@ include file="../common/footer.jspf" %>

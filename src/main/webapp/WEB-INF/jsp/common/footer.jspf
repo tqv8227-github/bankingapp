@@ -1,5 +1,18 @@
  <div class="footer">
  	<h3>This is the footer</h3>
  </div>
+ 
+ <script type="text/javascript">
+	$(function(){
+		$('#nav a').click(function(e) { 
+			  $('#main-div').hide().load( $(this).attr('href') , function(){
+					 $('#main-div').show();
+			  });
+			  
+			  //return false;
+		})
+	})
+</script>
+
 </body>
 </html>
