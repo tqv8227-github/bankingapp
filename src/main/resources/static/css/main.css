@@ -14,7 +14,7 @@ table, td, th {
 .div-body{
 	position: fixed;
 	left: 225px;
-	top: 175px;
+	top: 125px;
 }
 
 .header {
@@ -52,9 +52,9 @@ table, td, th {
 }
 
 .sidenav a{
-  padding: 10px;
+  padding: 5px;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 17px;
   color: aliceblue;
   display: block;
   text-align: center;

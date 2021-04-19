@@ -1,12 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-	<h3>this is an index.jsp</h3>
-</body>
-</html>
+<%@ include file="common/header.jspf" %>
+<%@ include file="common/sidenav.jspf" %>
+
+<div class="div-body" id="main-div">
+		<h3>
+			Hello. Welcome to My Bank Application.
+		</h3>
+</div>
+<%@ include file="common/footer.jspf" %>

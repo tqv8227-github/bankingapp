@@ -1,6 +1,10 @@
 <div class="sidenav" id="nav">
-  <a href="javascript:alert('hello')">About</a>
-  <a href="/customer/list/all">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
+  <a href="/">About</a>
+  <a href="/customer/list/all">Customers</a>
+  <a href="#">Bankers</a>
+  <a href="#">Banker Types</a>
+  <a href="#">Accounts</a>
+  <a href="#">Account Types</a>
+  <a href="#">Transaction Types</a>
+  <a href="#">Customer Transactions</a>
 </div>
