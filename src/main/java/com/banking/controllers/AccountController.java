@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 //import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +26,7 @@ import com.banking.services.AccountService;
 
 import lombok.extern.slf4j.Slf4j;
 
-@RestController
+@Controller
 @Slf4j
 @RequestMapping("/account")
 public class AccountController {
@@ -73,12 +75,18 @@ public class AccountController {
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////
-	@GetMapping(value="customer/id/{number}", produces="application/json")
-	public ResponseEntity<List<Account>> getAccountForCustomer(@PathVariable (name="number") int customerId){
+	@GetMapping(value="customer/id/{number}", produces="application/text")
+	public String getAccountForCustomer(@PathVariable (name="number") int customerId, ModelMap model){
 		log.debug("List account by customer id");
 		//Account account = rep.findById(accountNumber).get();
 		List<Account> accountList = service.findByCustomerId(customerId);
-		return ResponseEntity.ok(accountList);
+		
+		if (accountList.size() > 0) {
+			model.put("customer", accountList.get(0).getCustomer());
+		}
+		
+		model.put("accountList", accountList);
+		return "./account/customeraccountlist";
 	}
 	
 	/////////////////////////////////////////////////////////////////////

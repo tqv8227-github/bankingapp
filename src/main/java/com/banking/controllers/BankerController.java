@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.banking.entities.Banker;
 import com.banking.services.BankerService;
 
-@RestController
+@Controller
 @RequestMapping("/banker")
 public class BankerController {
 
@@ -31,10 +33,12 @@ public class BankerController {
 		this.service=service;
 	}
 	///////////////////////////////////////////////////////////////////////////////
-	@GetMapping(value="all", produces="application/json")
-	public ResponseEntity<List<Banker>> findAll(HttpServletRequest body){
+	@GetMapping(value="list/all")
+	public String findAll(ModelMap map){
 		List<Banker> bankerList = service.findAll();
-		return ResponseEntity.ok(bankerList);
+		map.put("bankerList", bankerList);
+		
+		return "./banker/bankerlist";
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////

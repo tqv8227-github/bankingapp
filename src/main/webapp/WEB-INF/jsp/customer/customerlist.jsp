@@ -4,7 +4,7 @@
 <%@ include file="../common/header.jspf" %>
 <%@ include file="../common/sidenav.jspf" %>
 	<div class="div-body" id="main-div">
-	<h3>this is customer list page</h3>
+	<h3>Customer List</h3>
 	<table>
 		<thead>
 			<tr>
@@ -13,7 +13,7 @@
 				<th>Birth Date (Mon/Day/Year)</th>
 				<th>SSN</th>
 				<th>Sex</th>
-				<th>Action</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -25,7 +25,12 @@
 					<td><fmt:formatDate value="${birthDate}" pattern="MM/dd/yyyy" /></td>
 					<td>${customer.getSsn()}</td>
 					<td>${customer.getSex()}</td>
-					<td><a href="/customer/edit/id/${customer.getId()}">Edit</a> || <a href="/customer/delete/id/${customer.getId()}">Delete</a></td>
+					<td>
+						<a href="/account/customer/id/${customer.getId()}">View Accounts</a>||
+						<a href="/customertransaction/view/id/${customer.getId()}">View Transactions</a>||
+						<a href="/customer/edit/id/${customer.getId()}">Edit</a> || 
+						<a href="/customer/delete/id/${customer.getId()}">Delete</a>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>

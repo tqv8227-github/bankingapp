@@ -39,7 +39,7 @@ public class Customer {
 	@Column(name="MIDDLENAME")
 	private String middleName;
 	
-	@DateTimeFormat(pattern="MM/dd/yyyy")
+	//@DateTimeFormat(pattern="MM/dd/yyyy")
 	@Column(name="BIRTHDATE" , columnDefinition="TIMESTAMP", nullable = false)
 	private LocalDateTime birthDate;
 	

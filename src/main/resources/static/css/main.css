@@ -11,6 +11,10 @@ table, td, th {
 	
 }
 
+th {
+	background-color: gainsboro;
+}
+
 .div-body{
 	position: fixed;
 	left: 225px;

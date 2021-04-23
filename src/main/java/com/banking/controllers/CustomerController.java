@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.banking.entities.Customer;
 import com.banking.entities.CustomerAccountView;
@@ -162,8 +163,8 @@ public class CustomerController {
 		return ResponseEntity.ok(customer);
 	}
 	/////////////////////////////////////////////////////////////////////////////////
-	@PutMapping(value="update", produces="application/json")
-	public ResponseEntity<Customer> updateUser2(@RequestBody(required=true) Customer customer) throws Exception {
+	@PostMapping(value="update", consumes="application/x-www-form-urlencoded")
+	public RedirectView updateUser(Customer customer) throws Exception {
 		Customer lCustomer = service.findById(customer.getId());
 		
 		if (lCustomer != null && lCustomer.getLastName() != null && lCustomer.getFirstName() != null) {
@@ -172,7 +173,7 @@ public class CustomerController {
 			throw new Exception("Error: Customer is not found");
 		}
 		
-		return ResponseEntity.ok(lCustomer);
+		return new RedirectView("/customer/list/all");
 	}
 	//////////////////////////////////////////////////////////////////////////////
 	@GetMapping(value="edit/id/{id}")
