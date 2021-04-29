@@ -10,6 +10,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,30 +20,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.banking.entities.Customer;
 import com.banking.entities.CustomerTransaction;
 import com.banking.repositories.CustomerTransactionRepository;
+import com.banking.services.CustomerService;
 import com.banking.services.CustomerTransactionService;
 
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 
-@RestController
+@Controller
 @Slf4j
 @RequestMapping(value="/transaction")
 public class CustomerTransactionController {
 
 	private CustomerTransactionService service;
+	private CustomerService custService;
 	
 	// use dependency injection by constructor
-	public CustomerTransactionController(CustomerTransactionService service) {
+	public CustomerTransactionController(CustomerTransactionService service, CustomerService custService) {
 		this.service = service;
+		this.custService = custService;
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////
-	@GetMapping(value="customer/id/{customerId}", produces="application/json")
-	public ResponseEntity<List<CustomerTransaction>> getCustomerTransaction(@PathVariable("customerId") int id){
+	@GetMapping(value="customer/id/{customerId}", produces="application/text")
+	public String getCustomerTransaction(@PathVariable("customerId") int id, ModelMap model){
 		List<CustomerTransaction> transactionList = service.findByAccountCustomerId(id);
-		return  ResponseEntity.ok(transactionList);
+		Customer customer = custService.findById(id);
+		
+		model.put("transactionList", transactionList);
+		model.put("customer", customer);
+		
+		return  "./transaction/listtransaction";
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////
