@@ -23,8 +23,8 @@
 								<td>${account.getAmount()}</td>
 								<td>${account.getAccountType().getName()}</td>
 								<td>
-									<a href="/account/edit/id/${account.getId()}">Deposit</a> ||
-									<a href="/account/edit/id/${account.getId()}">Withdraw</a>
+									<a href="/bankingapp/account/edit/id/${account.getId()}/action/Deposit">Deposit</a> ||
+									<a href="/bankingapp/account/edit/id/${account.getId()}/action/Withdraw">Withdraw</a>
 								</td>
 							</tr>
 						</c:forEach>	
@@ -35,6 +35,6 @@
 		<c:otherwise><div>No Accounts found for this Customer</div></c:otherwise>
 	</c:choose>
 	<br/>
-	<div><a href="/customer/list/all">Return to Customer List</a></div>
+	<div><a href="/bankingapp/customer/list/all">Return to Customer List</a></div>
 </div>
 <%@ include file="../common/footer.jspf" %>

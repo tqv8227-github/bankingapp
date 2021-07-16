@@ -38,6 +38,6 @@
 		<c:otherwise><div>No transactions found for this Customer</div></c:otherwise>
 	</c:choose>
 	<br/>
-	<div><a href="/customer/list/all">Return to Customer List</a></div>
+	<div><a href="/bankingapp/customer/list/all">Return to Customer List</a></div>
 </div>
 <%@ include file="../common/footer.jspf" %>

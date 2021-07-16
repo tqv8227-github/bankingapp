@@ -8,8 +8,8 @@
 		<table>
 			<thead>
 				<tr>
-					<th>First Name</th>
-					<th>Last Name</th>
+					<th><a href='/bankingapp/customer/list/all?sortBy=${sortBy}&fieldName=${"firstName"}'>First Name</a></th>
+					<th><a href='/bankingapp/customer/list/all?sortBy=${sortBy}&fieldName=${"lastName"}'>Last Name</a></th>
 					<th>Birth Date (Mon/Day/Year)</th>
 					<th>SSN</th>
 					<th>Sex</th>
@@ -26,10 +26,10 @@
 						<td>${customer.getSsn()}</td>
 						<td>${customer.getSex()}</td>
 						<td>
-							<a href="/account/customer/id/${customer.getId()}">View Accounts</a>||
-							<a href="/transaction/customer/id/${customer.getId()}">View Transactions</a>||
-							<a href="/customer/edit/id/${customer.getId()}">Edit</a> || 
-							<a href="/customer/delete/id/${customer.getId()}">Delete</a>
+							<a href="/bankingapp/account/customer/id/${customer.getId()}">View Accounts</a>||
+							<a href="/bankingapp/transaction/customer/id/${customer.getId()}">View Transactions</a>||
+							<a href="/bankingapp/customer/edit/id/${customer.getId()}">Edit</a> || 
+							<a href="/bankingapp/customer/delete/id/${customer.getId()}">Delete</a>
 						</td>
 					</tr>
 				</c:forEach>
@@ -37,6 +37,6 @@
 			<!-- <tfoot style="colspan: 5">  -->
 			</tfoot>
 		</table>
-		<div><a href="/customer/add/new">Add New Customer</a></div>
+		<div><a href="/bankingapp/customer/add/new">Add New Customer</a></div>
 	</div>
 <%@ include file="../common/footer.jspf" %>

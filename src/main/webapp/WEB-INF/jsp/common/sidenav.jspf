@@ -1,10 +1,10 @@
 <div class="sidenav" id="nav">
-  <a href="/">About</a>
-  <a href="/customer/list/all">Customers</a>
-  <a href="/banker/list/all">Bankers</a>
-  <a href="/bankertype/list/all">Banker Types</a>
-  <a href="/account/list/all">Accounts</a>
-  <a href="/accounttype/list/all">Account Types</a>
-  <a href="/transactiontype/list/all">Transaction Types</a>
-  <a href="/customertransaction/list/all">Customer Transactions</a>
+  <a href="/bankingapp">About</a>
+  <a href="/bankingapp/customer/list/all">Customers</a>
+  <a href="/bankingapp/banker/list/all">Bankers</a>
+  <a href="/bankingapp/bankertype/list/all">Banker Types</a>
+  <a href="/bankingapp/account/list/all">Accounts</a>
+  <a href="/bankingapp/accounttype/list/all">Account Types</a>
+  <a href="/bankingapp/transactiontype/list/all">Transaction Types</a>
+  <a href="/bankingapp/customertransaction/list/all">Customer Transactions</a>
 </div>

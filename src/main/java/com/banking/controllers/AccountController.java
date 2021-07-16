@@ -100,6 +100,21 @@ public class AccountController {
 		}
 	}
 	//////////////////////////////////////////////////////////////////////
+	@GetMapping(value="edit/account/{accountId}/action/{action}")
+	public String showEditAccount(@PathVariable(value="accountId", required=true) int accountId, @PathVariable(value="action", 
+											required=true) String actionType, ModelMap model) {
+		Account account = service.findById(accountId);
+		if (account == null) {  // account is not found
+			
+		}else if (account.getAmount() <= 0 && actionType.equals("Withdraw")) { //no more money in account
+			
+		}else {
+			
+		}
+		
+		return "hello";
+	}
+	//////////////////////////////////////////////////////////////////////
 	public void printProps() {
 		// using Environment to get prop from application.properties
 		String userName = env.getProperty("spring.security.user.name");

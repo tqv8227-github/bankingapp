@@ -23,7 +23,7 @@
 					<td>${banker.getLastName()}</td>
 					<td>${banker.getMi()}</td>
 					<td>${banker.getBankerType().getName()}</td>
-					<td><a href="/banker/edit/id/${banker.getId()}">Edit</a> || <a href="/banker/delete/id/${banker.getId()}">Delete</a></td>
+					<td><a href="/bankingapp/banker/edit/id/${banker.getId()}">Edit</a> || <a href="/bankingapp/banker/delete/id/${banker.getId()}">Delete</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

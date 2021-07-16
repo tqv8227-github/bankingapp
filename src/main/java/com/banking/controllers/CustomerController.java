@@ -1,5 +1,7 @@
 package com.banking.controllers;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -48,8 +50,32 @@ public class CustomerController {
 	
 	//////////////////////////////////////////////////////////////////////////////////
 	@GetMapping(value="list/all")
-	public String getAllCustomers2(ModelMap map) throws Exception{	
+	public String getAllCustomers2(@RequestParam(value="sortBy", required=false, defaultValue="asc") String sortOrder,  
+									@RequestParam(value="fieldName", required=false, defaultValue="firstName") String sortedFieldName, 
+									ModelMap map) throws Exception{	
+		
+		
+		Comparator<Customer> sortByFirstNameDesc = (cust1, cust2)-> cust2.getFirstName().compareTo(cust1.getFirstName());
+		Comparator<Customer> sortByFirstNameAsc = (cust1, cust2)-> cust1.getFirstName().compareTo(cust2.getFirstName());
+		Comparator<Customer> sortByLastNameDesc = (cust1, cust2)-> cust2.getLastName().compareTo(cust1.getLastName());
+		Comparator<Customer> sortByLastNameAsc = (cust1, cust2)-> cust1.getLastName().compareTo(cust2.getLastName());
+		
 		List<Customer> customerList = service.findAll();
+		
+		if (sortOrder.equalsIgnoreCase("desc") && sortedFieldName.equalsIgnoreCase("firstName")) {
+			Collections.sort(customerList, sortByFirstNameDesc);
+			map.put("sortBy", "asc");
+		}else if (sortOrder.equalsIgnoreCase("asc") && sortedFieldName.equalsIgnoreCase("firstName")) {
+			Collections.sort(customerList, sortByFirstNameAsc);
+			map.put("sortBy", "desc");
+		}else if (sortOrder.equalsIgnoreCase("desc") && sortedFieldName.equalsIgnoreCase("lastName")) {
+			Collections.sort(customerList, sortByLastNameDesc);
+			map.put("sortBy", "asc");
+		}else if (sortOrder.equalsIgnoreCase("asc") && sortedFieldName.equalsIgnoreCase("lastName")) {
+			Collections.sort(customerList, sortByLastNameAsc);
+			map.put("sortBy", "desc");
+		}
+		
 		map.put("customerList", customerList);
 		
 		return "./customer/customerlist";
@@ -101,7 +127,7 @@ public class CustomerController {
 			customer = repo.save(newCustomer);
 		}else {
 			String message = "Error: Please validate First name and Last Name.";
-			String forwardPage = "/customer/list/all";
+			String forwardPage = "/bankingapp/customer/list/all";
 			model.put("errorMsg", message);
 			model.put("forwardPage", forwardPage);
 			model.put("forwardPageName", "back to Customer List");
@@ -121,7 +147,7 @@ public class CustomerController {
 		}else {
 			// throw new Exception("Error: Customer is not found");
 			String message = "Error: Customer ID is not found.";
-			String forwardPage = "/customer/list/all";
+			String forwardPage = "/bankingapp/customer/list/all";
 			model.put("errorMsg", message);
 			model.put("forwardPage", forwardPage);
 			model.put("forwardPageName", "back to Customer List");
@@ -150,12 +176,13 @@ public class CustomerController {
 		
 		if (customer==null || accountService.findByCustomerId(custId).size() > 0) {
 			String message = "Can't delete. Either customer does not exist or customer still owns an account. ";
-			String forwardPage = "/customer/list/all";
+			String forwardPage = "/bankingapp/customer/list/all";
 			model.put("errorMsg", message);
 			model.put("forwardPage", forwardPage);
 			model.put("forwardPageName", "back to Customer List");
 			return "./error/displayerror";
 		}else {
+			repo.delete(customer);
 			model.put("customerList", service.findAll());
 			return "./customer/customerlist";
 		}
